@@ -21,7 +21,8 @@
         <activity android:name=".EditarPerfil" />
         <activity android:name=".NuevoProducto" />
         <activity android:name=".TodosProductos" />
-        <activity android:name=".TodosUsuarios"></activity>
+        <activity android:name=".TodosUsuarios" />
+        <activity android:name=".ProductosFavoritos"></activity>
     </application>
 
 </manifest>

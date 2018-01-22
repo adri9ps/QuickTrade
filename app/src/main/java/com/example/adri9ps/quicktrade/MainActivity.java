@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button miPerfil, misProductos, todosUsuarios, todosProductos, cerrarSesion;
+    private Button miPerfil, misProductos, todosUsuarios, todosProductos, cerrarSesion, fav;
     FirebaseUser user;
     FirebaseAuth mAuth;
 
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         todosUsuarios = (Button) findViewById(R.id.btnUsuarios);
         todosProductos = (Button) findViewById(R.id.btnProductos);
         cerrarSesion = (Button) findViewById(R.id.btnCerrarSesion);
+        fav = (Button) findViewById(R.id.btnFav);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         mAuth = FirebaseAuth.getInstance();
@@ -69,6 +70,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent aTodosProductos = new Intent(getApplicationContext(), TodosProductos.class);
                 startActivity(aTodosProductos);
+
+            }
+        });
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent aFav = new Intent(getApplicationContext(), ProductosFavoritos.class);
+                startActivity(aFav);
 
             }
         });

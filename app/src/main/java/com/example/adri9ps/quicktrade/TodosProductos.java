@@ -1,9 +1,14 @@
 package com.example.adri9ps.quicktrade;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.adri9ps.quicktrade.model.Producto;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,17 +23,22 @@ import java.util.ArrayList;
 
 public class TodosProductos extends AppCompatActivity {
 
-    private ListView lvTec,lvCoches,lvHogar;
+    private ListView lvTec, lvCoches, lvHogar;
+    private EditText nombreProductoFavorito;
+    private Button marcarComoFavorito;
 
 
     DatabaseReference bbddP;
     ArrayAdapter<String> adaptadorProductosHogar;
     ArrayAdapter<String> adaptadorProductosCoche;
     ArrayAdapter<String> adaptadorProductosTec;
+    ArrayAdapter<String> adapterFavoritos;
     ArrayList<String> listadoProductosCoche = new ArrayList<String>();
     ArrayList<String> lisadoProductosHogar = new ArrayList<String>();
     ArrayList<String> listadoProductosTec = new ArrayList<String>();
+    ArrayList<String> listadoProductosFavoritos = new ArrayList<String>();
     private FirebaseAuth fba;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +47,8 @@ public class TodosProductos extends AppCompatActivity {
         lvTec = (ListView) findViewById(R.id.listViewTecnologia);
         lvCoches = (ListView) findViewById(R.id.listViewCoches);
         lvHogar = (ListView) findViewById(R.id.listViewHogar);
+        nombreProductoFavorito = (EditText) findViewById(R.id.editTextFavorito);
+        marcarComoFavorito = (Button) findViewById(R.id.btnEnviarFavorito);
         fba = FirebaseAuth.getInstance();
 
 
@@ -47,16 +59,23 @@ public class TodosProductos extends AppCompatActivity {
         cargarProductosTecnologia();
         cargarProductosCoches();
         cargarProductosHogar();
+
+        marcarComoFavorito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
     }
 
-    public void cargarProductosTecnologia(){
-        Query q =  bbddP.orderByChild("categoria").equalTo("Tecnologia");
+    public void cargarProductosTecnologia() {
+        Query q = bbddP.orderByChild("categoria").equalTo("Tecnologia");
 
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Carga Valores encontrados
-
 
 
                 //Obtenemos nombres de productos
@@ -70,7 +89,6 @@ public class TodosProductos extends AppCompatActivity {
                 }
 
 
-
             }
 
             @Override
@@ -81,14 +99,13 @@ public class TodosProductos extends AppCompatActivity {
 
     }
 
-    public void cargarProductosCoches(){
-        Query q =  bbddP.orderByChild("categoria").equalTo("Coches");
+    public void cargarProductosCoches() {
+        Query q = bbddP.orderByChild("categoria").equalTo("Coches");
 
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Carga Valores encontrados
-
 
 
                 //Obtenemos nombres de productos
@@ -102,7 +119,6 @@ public class TodosProductos extends AppCompatActivity {
                 }
 
 
-
             }
 
             @Override
@@ -112,14 +128,14 @@ public class TodosProductos extends AppCompatActivity {
         });
 
     }
-    public void cargarProductosHogar(){
-        Query q =  bbddP.orderByChild("categoria").equalTo("Hogar");
+
+    public void cargarProductosHogar() {
+        Query q = bbddP.orderByChild("categoria").equalTo("Hogar");
 
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Carga Valores encontrados
-
 
 
                 //Obtenemos nombres de productos
@@ -133,7 +149,6 @@ public class TodosProductos extends AppCompatActivity {
                 }
 
 
-
             }
 
             @Override
@@ -143,4 +158,7 @@ public class TodosProductos extends AppCompatActivity {
         });
 
     }
-}
+
+
+    }
+//}

@@ -57,6 +57,12 @@
         android:layout_height="50dp" />
 
     <Button
+        android:id="@+id/btnFav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Favoritos" />
+
+    <Button
         android:id="@+id/btnCerrarSesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
